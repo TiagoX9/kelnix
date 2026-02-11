@@ -1,0 +1,147 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding-top: 80px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.left {
+  flex: 1;
+}
+
+.tagline {
+  margin-bottom: 24px;
+}
+
+.tag {
+  font-size: 0.65rem;
+  color: var(--orange);
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.title {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+.titleChar {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  color: var(--white);
+  display: inline-block;
+  cursor: default;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+
+.highlight {
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.ctas {
+  display: flex;
+  gap: 16px;
+}
+
+.ctaPrimary {
+  padding: 16px 32px;
+  background: var(--orange);
+  color: var(--black);
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ctaSecondary {
+  padding: 16px 32px;
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ctaSecondary:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.right {
+  flex-shrink: 0;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.scrollDot {
+  width: 6px;
+  height: 6px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+
+.scrollText {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 3px;
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .title {
+    justify-content: center;
+  }
+
+  .subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ctas {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .scrollIndicator {
+    display: none;
+  }
+}

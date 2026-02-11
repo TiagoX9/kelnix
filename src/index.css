@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --orange: #FF6B00;
+  --black: #1A1A1A;
+  --deep-black: #0D0D0D;
+  --white: #FFFFFF;
+  --off-white: #F5F5F5;
+  --orange-light: #FF8A33;
+  --orange-dark: #CC5500;
+  --gray: #888888;
+  --border-radius: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--deep-black);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+#root {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::selection {
+  background: var(--orange);
+  color: var(--black);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--orange);
+  border-radius: 3px;
+}
+
+.pixel-font {
+  font-family: 'Press Start 2P', cursive;
+}
+
+section {
+  position: relative;
+  padding: 120px 8%;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 80px 6%;
+  }
+
+  body {
+    cursor: auto;
+  }
+}

@@ -1,0 +1,114 @@
+.robot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.antenna {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.antennaTop {
+  width: 16px;
+  height: 16px;
+  background: var(--orange);
+  border-radius: 50%;
+}
+
+.antennaStick {
+  width: 4px;
+  height: 24px;
+  background: var(--orange);
+}
+
+.head {
+  width: 180px;
+  height: 140px;
+  background: var(--black);
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border: 4px solid var(--black);
+  position: relative;
+}
+
+.eyes {
+  display: flex;
+  gap: 32px;
+}
+
+.eye {
+  width: 44px;
+  height: 44px;
+  background: var(--orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pupil {
+  width: 18px;
+  height: 18px;
+  background: var(--black);
+  border-radius: 50%;
+}
+
+.mouth {
+  width: 60px;
+  height: 20px;
+  background: var(--orange);
+  border-radius: 4px 4px 10px 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mouthInner {
+  width: 100%;
+  height: 100%;
+  background: var(--orange);
+  border-radius: 4px 4px 10px 10px;
+}
+
+@media (max-width: 768px) {
+  .robot {
+    width: 160px;
+  }
+
+  .head {
+    width: 140px;
+    height: 110px;
+    border-radius: 24px;
+  }
+
+  .eye {
+    width: 36px;
+    height: 36px;
+  }
+
+  .pupil {
+    width: 14px;
+    height: 14px;
+  }
+
+  .eyes {
+    gap: 24px;
+  }
+
+  .mouth {
+    width: 48px;
+    height: 16px;
+  }
+}

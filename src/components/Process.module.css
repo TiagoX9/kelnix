@@ -1,0 +1,120 @@
+.section {
+  background: var(--deep-black);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.label {
+  font-size: 0.65rem;
+  color: var(--orange);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 32px 0;
+  position: relative;
+}
+
+.stepIcon {
+  width: 64px;
+  height: 64px;
+  background: var(--black);
+  border: 3px solid var(--orange);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: default;
+  position: relative;
+  z-index: 2;
+}
+
+.stepIconText {
+  font-size: 1.2rem;
+  color: var(--orange);
+}
+
+.stepContent {
+  flex: 1;
+  padding-top: 4px;
+}
+
+.stepNum {
+  font-size: 0.55rem;
+  color: var(--orange);
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.stepTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.stepDesc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 400px;
+}
+
+.connector {
+  position: absolute;
+  left: 31px;
+  top: 96px;
+  width: 3px;
+  height: calc(100% - 64px);
+  background: linear-gradient(to bottom, var(--orange), rgba(255, 107, 0, 0.1));
+  border-radius: 2px;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .step {
+    gap: 20px;
+    padding: 24px 0;
+  }
+
+  .stepIcon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+  }
+
+  .connector {
+    left: 25px;
+    top: 76px;
+  }
+
+  .stepDesc {
+    max-width: 100%;
+  }
+}
