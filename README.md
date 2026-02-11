@@ -1,4 +1,32 @@
-# React + TypeScript + Vite
+# Kelnix — Solutions & Software
+
+React + TypeScript + Vite website for Kelnix.
+
+## GitHub Pages
+
+The app is set up to deploy to **GitHub Pages** automatically.
+
+### One-time setup
+
+1. Push this project to a GitHub repo (e.g. `kelnix-website` or `Kelnix`).
+2. In the repo: **Settings → Pages**
+   - **Source**: choose **GitHub Actions** (not “Deploy from a branch”).
+3. On every push to `main`, the workflow builds and deploys. Your site will be at:
+   - `https://<your-username>.github.io/<repo-name>/`
+
+### Local production build (optional)
+
+To build for the same base path as GitHub Pages (e.g. for testing):
+
+```bash
+# Replace kelnix-website with your repo name
+VITE_BASE_PATH=/kelnix-website/ npm run build
+npm run preview
+```
+
+---
+
+## React + TypeScript + Vite (template notes)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
