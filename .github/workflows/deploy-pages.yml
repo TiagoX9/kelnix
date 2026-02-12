@@ -34,8 +34,8 @@ jobs:
 
       - name: Build
         env:
-          # Base path for GitHub Pages: /<repo-name>/
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          # Use / for custom domain; use /<repo-name>/ for username.github.io/<repo-name>/
+          VITE_BASE_PATH: /
         run: npm run build
 
       - name: Upload artifact
