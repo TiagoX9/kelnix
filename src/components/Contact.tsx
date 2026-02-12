@@ -57,7 +57,7 @@ export default function Contact() {
           >
             <div className={styles.infoItem}>
               <span className={`pixel-font ${styles.infoIcon}`}>@</span>
-              <span>hello@kelnix.com</span>
+              <span>kelnixsolutions@gmail.com</span>
             </div>
             <div className={styles.infoItem}>
               <span className={`pixel-font ${styles.infoIcon}`}>#</span>
