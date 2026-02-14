@@ -2,6 +2,8 @@ import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import styles from './Contact.module.css';
 
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/xreaqebv';
+
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
@@ -12,11 +14,34 @@ export default function Contact() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          project: formState.project,
+          message: formState.message,
+          _subject: `[Kelnix] New message from ${formState.name}`,
+        }),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      });
+      if (!res.ok) throw new Error('Something went wrong');
+      setSubmitted(true);
+      setFormState({ name: '', email: '', project: '', message: '' });
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch {
+      setError('Failed to send. Please try info@kelnix.org directly.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -138,13 +163,21 @@ export default function Contact() {
                   required
                 />
               </div>
+              {error && (
+                <p className={styles.error} role="alert">
+                  {error}
+                </p>
+              )}
               <motion.button
                 type="submit"
                 className={styles.submit}
-                whileHover={{ scale: 1.03, boxShadow: '0 0 30px rgba(255, 107, 0, 0.4)' }}
-                whileTap={{ scale: 0.97 }}
+                disabled={loading}
+                whileHover={!loading ? { scale: 1.03, boxShadow: '0 0 30px rgba(255, 107, 0, 0.4)' } : undefined}
+                whileTap={!loading ? { scale: 0.97 } : undefined}
               >
-                <span className="pixel-font" style={{ fontSize: '0.7rem' }}>SEND MESSAGE</span>
+                <span className="pixel-font" style={{ fontSize: '0.7rem' }}>
+                  {loading ? 'SENDING...' : 'SEND MESSAGE'}
+                </span>
               </motion.button>
             </form>
           )}

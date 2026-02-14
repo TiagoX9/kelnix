@@ -136,6 +136,12 @@ select.input option {
   color: var(--white);
 }
 
+.error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: -8px;
+}
+
 .submit {
   padding: 16px 32px;
   background: var(--orange);
@@ -145,6 +151,11 @@ select.input option {
   font-weight: 700;
   cursor: pointer;
   align-self: flex-start;
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .success {
