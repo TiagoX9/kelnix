@@ -34,8 +34,8 @@ jobs:
 
       - name: Build
         env:
-          # Use repo name so assets load on both *.github.io/repo-name/ and custom domain
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          # Use / for custom domain; use /<repo-name>/ for username.github.io/<repo-name>/
+          VITE_BASE_PATH: /
           VITE_FORMSPREE_ENDPOINT: ${{ secrets.VITE_FORMSPREE_ENDPOINT }}
         run: npm run build
 
