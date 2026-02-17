@@ -26,7 +26,7 @@ function NibsPrivacy() {
         <p className={styles.updated}>Last updated: February 17, 2026</p>
         
         <p>
-          Nibs is a simple casual mobile game developed by [Your Full Name or Company Name].
+          Nibs is a simple casual mobile game developed by Kelnix Solutions and Software.
         </p>
         <p>
           We are committed to protecting your privacy. This Privacy Policy explains how information is handled 
