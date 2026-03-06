@@ -62,8 +62,8 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Let's build something
-            <span className={styles.highlight}> great</span>
+            Let's build what's
+            <span className={styles.highlight}> next</span>
           </motion.h2>
           <motion.p
             className={styles.desc}

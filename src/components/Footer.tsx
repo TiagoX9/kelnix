@@ -7,7 +7,7 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.left}>
           <span className={`pixel-font ${styles.logo}`}>KELNIX</span>
-          <p className={styles.tagline}>Solutions & Software</p>
+          <p className={styles.tagline}>Software for Humans & Agents</p>
         </div>
         <div className={styles.links}>
           <a href="#services">Services</a>
