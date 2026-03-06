@@ -24,6 +24,10 @@ VITE_BASE_PATH=/kelnix-website/ npm run build
 npm run preview
 ```
 
+## TODO
+
+- [ ] **Create OG image**: Add a 1200×630px image at `public/logos/kelnix-og.png` for social sharing previews (used by Open Graph and Twitter Card meta tags in `index.html`).
+
 ## Contact form
 
 The “Hire Us” form uses [Formspree](https://formspree.io/f/xreaqebv); submissions go to **info@kelnix.org**. The endpoint is set in code; to override it (e.g. for a different form), set the `VITE_FORMSPREE_ENDPOINT` repo secret in GitHub Actions.
