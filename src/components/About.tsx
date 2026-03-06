@@ -46,7 +46,7 @@ export default function About() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            Kelnix is a team of engineers, designers, and problem-solvers building software for humans and the agents that work alongside them. We don't limit ourselves to one stack or one industry — if it involves technology, we build it.
+            Kelnix is a team of engineers and problem-solvers building applications for humans and APIs for the agents that work alongside them. We don't limit ourselves to one stack or one industry — if it involves technology, we build it.
           </motion.p>
           <motion.p
             className={styles.desc}
