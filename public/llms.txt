@@ -1,0 +1,18 @@
+# Kelnix
+
+> Applications for humans, APIs for agents. Any technology, any solution — from concept to production.
+
+Kelnix is a software engineering company that builds two things:
+1. **Applications for humans** — web apps, SPAs, and platforms built with modern frameworks.
+2. **APIs for agents** — integrations, LLM orchestration, and autonomous workflows that let AI agents do the heavy lifting.
+
+## Services
+
+- **Web Development**: Custom web apps, SPAs, and platforms built with modern frameworks (React, Next.js, Node.js, Python, etc.)
+- **AI & Automation**: APIs and integrations for LLM orchestration, autonomous agent workflows, and intelligent automation.
+- **Cloud & DevOps**: Scalable infrastructure on AWS, GCP, and Azure with CI/CD, IaC, and container orchestration.
+- **Mobile Development**: Cross-platform mobile apps using React Native and Flutter.
+
+## Contact
+
+Website: https://kelnix.com
