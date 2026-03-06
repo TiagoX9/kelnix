@@ -6,7 +6,7 @@ const services = [
   {
     icon: '{ }',
     title: 'Web Development',
-    desc: 'Custom web apps, SPAs, and platforms built with modern frameworks and pixel-perfect precision.',
+    desc: 'Custom web apps, SPAs, and platforms built for humans and agents with pixel-perfect precision.',
     tags: ['React', 'Next.js', 'Node.js'],
   },
   {
@@ -24,7 +24,7 @@ const services = [
   {
     icon: '( )',
     title: 'AI & Automation',
-    desc: 'Intelligent solutions powered by ML, LLMs, and automation to supercharge your workflow.',
+    desc: 'Intelligent agents and AI-powered solutions that work alongside your team to supercharge every workflow.',
     tags: ['ML', 'LLMs', 'RPA'],
   },
   {

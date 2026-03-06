@@ -29,7 +29,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <span className={`pixel-font ${styles.tag}`}>{'> '}SOLUTIONS & SOFTWARE</span>
+            <span className={`pixel-font ${styles.tag}`}>{'> '}SOFTWARE FOR HUMANS & AGENTS</span>
           </motion.div>
 
           <h1 className={styles.title}>
@@ -60,7 +60,7 @@ export default function Hero() {
           >
             We build <span className={styles.highlight}>any technology</span>,{' '}
             <span className={styles.highlight}>any solution</span>.<br />
-            From pixel to production.
+            For humans and agents — from pixel to production.
           </motion.p>
 
           <motion.div

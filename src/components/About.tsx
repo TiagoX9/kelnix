@@ -37,8 +37,8 @@ export default function About() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            We turn ideas into
-            <span className={styles.highlight}> reality</span>
+            Building for humans
+            <span className={styles.highlight}> and agents</span>
           </motion.h2>
           <motion.p
             className={styles.desc}
@@ -46,7 +46,7 @@ export default function About() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            Kelnix is a team of engineers, designers, and problem-solvers who thrive on turning complex challenges into elegant, working solutions. We don't limit ourselves to one stack or one industry — if it involves technology, we build it.
+            Kelnix is a team of engineers, designers, and problem-solvers building software for humans and the agents that work alongside them. We don't limit ourselves to one stack or one industry — if it involves technology, we build it.
           </motion.p>
           <motion.p
             className={styles.desc}
