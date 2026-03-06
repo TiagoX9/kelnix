@@ -58,9 +58,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.6, duration: 0.6 }}
           >
-            We build <span className={styles.highlight}>any technology</span>,{' '}
-            <span className={styles.highlight}>any solution</span>.<br />
-            For humans and agents — from pixel to production.
+            <span className={styles.highlight}>Applications</span> for humans,{' '}
+            <span className={styles.highlight}>APIs</span> for agents.<br />
+            From concept to production.
           </motion.p>
 
           <motion.div
