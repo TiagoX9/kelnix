@@ -28,6 +28,15 @@ const products: Product[] = [
     route: '/products/receipt-mcp',
   },
   {
+    id: 'datamind-curator',
+    name: 'Kelnix DataMind Curator',
+    desc: 'AI-Ready Data & Context Engineering API. Connect any data source, query with natural language, clean data, build AI context, redact PII.',
+    logo: '/logos/datamind-curator.png',
+    tab: 'agents',
+    tags: ['MCP', 'API', 'NLQ', 'Data', 'RAG'],
+    route: '/products/datamind-curator',
+  },
+  {
     id: 'nibs',
     name: 'Nibs',
     desc: 'A fun, casual mobile game where you guide Nibs the bird through challenges. Simple to pick up, hard to put down.',
