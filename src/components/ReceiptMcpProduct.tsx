@@ -161,7 +161,7 @@ export default function ReceiptMcpProduct() {
                 mcp.so
               </a>
               <a
-                href="https://glama.ai/mcp/servers"
+                href="https://glama.ai/mcp/servers/kelnixsolutions/kelnix-receipt-mcp-api"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.registryLink}
