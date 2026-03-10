@@ -105,10 +105,8 @@ export default function ReceiptMcpProduct() {
             <div className={styles.toolGrid}>
               {tools.map((tool) => (
                 <div key={tool.name} className={styles.toolCard}>
-                  <div style={{ flex: 1 }}>
-                    <div className={`pixel-font ${styles.toolName}`}>{tool.name}</div>
-                    <div className={styles.toolDesc}>{tool.desc}</div>
-                  </div>
+                  <div className={`pixel-font ${styles.toolName}`}>{tool.name}</div>
+                  <div className={styles.toolDesc}>{tool.desc}</div>
                   <span
                     className={`pixel-font ${styles.toolCost} ${
                       tool.cost === 'free' ? styles.toolFree : styles.toolPaid

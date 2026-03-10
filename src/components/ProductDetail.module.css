@@ -177,43 +177,40 @@
 
 .toolGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 12px;
 }
 
 .toolCard {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
   background: rgba(26, 26, 26, 0.8);
   border: 2px solid rgba(255, 107, 0, 0.1);
   border-radius: 12px;
-  padding: 16px;
-  overflow: hidden;
-  min-width: 0;
+  padding: 16px 16px 40px;
+  min-height: 100px;
 }
 
 .toolName {
   font-size: 0.55rem;
   color: var(--orange);
   letter-spacing: 1px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin-bottom: 6px;
+  word-break: break-all;
 }
 
 .toolDesc {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
-  margin-top: 2px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  line-height: 1.5;
+  flex: 1;
 }
 
 .toolCost {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
   font-size: 0.5rem;
   letter-spacing: 1px;
   padding: 4px 10px;
