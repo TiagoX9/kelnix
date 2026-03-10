@@ -56,6 +56,9 @@ export default function Products() {
       <CustomCursor />
       <PixelGrid />
       <div className={styles.container}>
+        <Link to="/" className={`pixel-font ${styles.backLink}`}>
+          &larr; HOME
+        </Link>
         <motion.div
           className={styles.header}
           initial={{ opacity: 0, y: 30 }}

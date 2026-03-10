@@ -189,18 +189,28 @@
   border: 2px solid rgba(255, 107, 0, 0.1);
   border-radius: 12px;
   padding: 16px;
+  overflow: hidden;
+  min-width: 0;
 }
 
 .toolName {
   font-size: 0.55rem;
   color: var(--orange);
   letter-spacing: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .toolDesc {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
   margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .toolCost {
