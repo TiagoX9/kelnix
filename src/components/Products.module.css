@@ -92,7 +92,9 @@
   transition: border-color 0.3s ease, transform 0.2s ease;
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card:hover {
@@ -135,6 +137,7 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 20px;
+  flex: 1;
 }
 
 .cardTags {
