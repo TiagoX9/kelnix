@@ -10,9 +10,9 @@ export default function Footer() {
           <p className={styles.tagline}>Software for Humans & Agents</p>
         </div>
         <div className={styles.links}>
+          <a href="/products">Products</a>
           <a href="#services">Services</a>
           <a href="#about">About</a>
-          <a href="#process">Process</a>
           <a href="#contact">Hire Us</a>
         </div>
         <div className={styles.right}>

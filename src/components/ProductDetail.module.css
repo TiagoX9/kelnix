@@ -1,0 +1,333 @@
+.container {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  background-color: transparent;
+  padding: 120px 8%;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--orange);
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  opacity: 0.7;
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Hero ────────────────────────────────────────────── */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+.heroLogo {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  object-fit: contain;
+}
+
+.heroInfo {
+  flex: 1;
+}
+
+.heroName {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.heroType {
+  font-size: 0.55rem;
+  color: var(--orange);
+  letter-spacing: 2px;
+}
+
+.heroDesc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 32px;
+}
+
+/* ── CTA buttons ─────────────────────────────────────── */
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--orange);
+  color: var(--black);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.ctaPrimary:hover {
+  box-shadow: 0 0 30px rgba(255, 107, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--white);
+  border: 2px solid rgba(255, 107, 0, 0.3);
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.ctaSecondary:hover {
+  border-color: var(--orange);
+  transform: translateY(-2px);
+}
+
+/* ── Section blocks ──────────────────────────────────── */
+
+.section {
+  margin-bottom: 48px;
+}
+
+.sectionLabel {
+  font-size: 0.6rem;
+  color: var(--orange);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* ── Pricing table ───────────────────────────────────── */
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pricingCard {
+  background: rgba(26, 26, 26, 0.8);
+  border: 2px solid rgba(255, 107, 0, 0.1);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+
+.pricingCredits {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.pricingPrice {
+  font-size: 0.9rem;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+
+.pricingPer {
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+.pricingNote {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-top: 8px;
+}
+
+/* ── Tool list ───────────────────────────────────────── */
+
+.toolGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.toolCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(26, 26, 26, 0.8);
+  border: 2px solid rgba(255, 107, 0, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.toolName {
+  font-size: 0.55rem;
+  color: var(--orange);
+  letter-spacing: 1px;
+}
+
+.toolDesc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 2px;
+}
+
+.toolCost {
+  font-size: 0.5rem;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.toolFree {
+  background: rgba(0, 200, 100, 0.1);
+  color: #00c864;
+}
+
+.toolPaid {
+  background: rgba(255, 107, 0, 0.1);
+  color: var(--orange);
+}
+
+/* ── Registry links ──────────────────────────────────── */
+
+.registryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.registryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(26, 26, 26, 0.8);
+  border: 2px solid rgba(255, 107, 0, 0.1);
+  border-radius: 12px;
+  color: var(--white);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.registryLink:hover {
+  border-color: var(--orange);
+  transform: translateY(-2px);
+}
+
+.registryIcon {
+  font-size: 0.5rem;
+  color: var(--orange);
+  letter-spacing: 1px;
+}
+
+/* ── Feature highlight ───────────────────────────────── */
+
+.featureText {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.highlight {
+  color: var(--orange);
+  font-weight: 600;
+}
+
+/* ── App store buttons (Nibs) ────────────────────────── */
+
+.storeButtons {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.storeButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: rgba(26, 26, 26, 0.8);
+  border: 2px solid rgba(255, 107, 0, 0.15);
+  border-radius: 14px;
+  color: var(--white);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.storeButton:hover {
+  border-color: var(--orange);
+  transform: translateY(-2px);
+}
+
+.storeLabel {
+  font-size: 0.45rem;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+
+.storeName {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 80px 6%;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ctas {
+    justify-content: center;
+  }
+
+  .pricingGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .toolGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .storeButtons {
+    flex-direction: column;
+  }
+}

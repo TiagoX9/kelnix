@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -13,11 +17,23 @@ export default function Navbar() {
   }, []);
 
   const links = [
+    { label: 'Products', href: '/products' },
     { label: 'Services', href: '#services' },
     { label: 'About', href: '#about' },
-    { label: 'Process', href: '#process' },
     { label: 'Hire Us', href: '#contact' },
   ];
+
+  const handleLinkClick = (href: string) => {
+    if (href.startsWith('#')) {
+      if (isHome) {
+        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('/' + href);
+      }
+    } else {
+      navigate(href);
+    }
+  };
 
   return (
     <>
@@ -27,7 +43,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <a href="#" className={styles.logo}>
+        <a href="/" className={styles.logo} onClick={(e) => { e.preventDefault(); navigate('/'); }}>
           <span className={`pixel-font ${styles.logoText}`}>KELNIX</span>
           <span className={styles.logoDot} />
         </a>
@@ -42,6 +58,10 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * i + 0.3 }}
               whileHover={{ color: '#FF6B00' }}
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick(link.href);
+              }}
             >
               <span className={`pixel-font ${styles.linkIndex}`}>0{i + 1}</span>
               {link.label}
@@ -86,7 +106,11 @@ export default function Navbar() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 * i + 0.2 }}
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileOpen(false);
+                  handleLinkClick(link.href);
+                }}
               >
                 <span className={`pixel-font ${styles.mobileLinkIndex}`}>0{i + 1}</span>
                 {link.label}
