@@ -45,6 +45,15 @@ const products: Product[] = [
     tags: ['iOS', 'Android', 'Game', 'Casual'],
     route: '/products/nibs',
   },
+  {
+    id: 'tinywins',
+    name: 'Tiny Wins',
+    desc: 'Build better habits, one tiny win at a time. Track daily habits, get AI-powered insights, and celebrate streaks with a clean, beautiful interface.',
+    logo: '/logos/tinywins.png',
+    tab: 'humans',
+    tags: ['iOS', 'Android', 'Habits', 'AI Insights'],
+    route: '/products/tinywins',
+  },
 ];
 
 export default function Products() {
