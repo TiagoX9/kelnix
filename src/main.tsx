@@ -9,6 +9,7 @@ import ReceiptMcpProduct from './components/ReceiptMcpProduct.tsx'
 import DataMindProduct from './components/DataMindProduct.tsx'
 import NibsProduct from './components/NibsProduct.tsx'
 import TinyWinsProduct from './components/TinyWinsProduct.tsx'
+import TinyWinsPrivacy from './components/TinyWinsPrivacy.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/products/datamind-curator" element={<DataMindProduct />} />
         <Route path="/products/nibs" element={<NibsProduct />} />
         <Route path="/products/tinywins" element={<TinyWinsProduct />} />
+        <Route path="/tinywins" element={<TinyWinsPrivacy />} />
         <Route path="/nibs" element={<NibsPrivacy />} />
       </Routes>
     </BrowserRouter>
