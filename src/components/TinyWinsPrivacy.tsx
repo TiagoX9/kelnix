@@ -92,7 +92,12 @@ function TinyWinsPrivacy() {
         <h2>Data Export and Deletion</h2>
         <p>
           You can export all your habit data as a CSV file from the Profile screen. You can also delete your
-          account at any time, which permanently removes all your data from our servers.
+          account at any time, which permanently removes all your data from our servers. All user data is
+          automatically and permanently deleted within 90 days of a deletion request.
+        </p>
+        <p>
+          For detailed instructions on how to delete your account, visit our{' '}
+          <a href="/tinywins/delete-account">Account Deletion page</a>.
         </p>
 
         <h2>Third-Party Services</h2>
