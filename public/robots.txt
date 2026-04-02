@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kelnix.com/sitemap.xml
+Sitemap: https://kelnix.org/sitemap.xml
