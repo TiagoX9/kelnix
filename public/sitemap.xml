@@ -6,7 +6,37 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://kelnix.com/products</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kelnix.com/products/nibs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kelnix.com/products/tinywins</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kelnix.com/products/receipt-mcp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kelnix.com/products/datamind-curator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://kelnix.com/nibs</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://kelnix.com/tinywins</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
