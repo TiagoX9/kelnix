@@ -15,4 +15,4 @@ Kelnix is a software engineering company that builds two things:
 
 ## Contact
 
-Website: https://kelnix.com
+Website: https://kelnix.org

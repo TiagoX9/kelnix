@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kelnix.com/</loc>
+    <loc>https://kelnix.org/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kelnix.com/products</loc>
+    <loc>https://kelnix.org/products</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kelnix.com/products/nibs</loc>
+    <loc>https://kelnix.org/products/nibs</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kelnix.com/products/tinywins</loc>
+    <loc>https://kelnix.org/products/tinywins</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kelnix.com/products/receipt-mcp</loc>
+    <loc>https://kelnix.org/products/receipt-mcp</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kelnix.com/products/datamind-curator</loc>
+    <loc>https://kelnix.org/products/datamind-curator</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kelnix.com/nibs</loc>
+    <loc>https://kelnix.org/nibs</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://kelnix.com/tinywins</loc>
+    <loc>https://kelnix.org/tinywins</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
