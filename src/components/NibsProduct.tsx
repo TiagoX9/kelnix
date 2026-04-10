@@ -45,9 +45,9 @@ export default function NibsProduct() {
                   <div className={styles.storeName}>App Store</div>
                 </div>
               </a>
-              <a href="#" className={styles.storeButton}>
+              <a href="https://play.google.com/store/apps/details?id=com.kelnix.nibs" className={styles.storeButton} target="_blank" rel="noopener noreferrer">
                 <div>
-                  <span className={`pixel-font ${styles.storeLabel}`}>COMING SOON</span>
+                  <span className={`pixel-font ${styles.storeLabel}`}>GET IT ON</span>
                   <div className={styles.storeName}>Google Play</div>
                 </div>
               </a>
