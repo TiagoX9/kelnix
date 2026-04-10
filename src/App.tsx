@@ -4,6 +4,7 @@ import PixelGrid from './components/PixelGrid';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
+import ProductsHighlight from './components/ProductsHighlight';
 import Services from './components/Services';
 import About from './components/About';
 import Process from './components/Process';
@@ -19,6 +20,7 @@ function App() {
         <Navbar />
         <Hero />
         <Marquee />
+        <ProductsHighlight />
         <Services />
         <About />
         <Process />
