@@ -85,6 +85,10 @@ export default function TinyWinsProduct() {
                 <span className={`pixel-font ${styles.registryIcon}`}>01</span>
                 Privacy Policy
               </Link>
+              <Link to="/tinywins/terms" className={styles.registryLink}>
+                <span className={`pixel-font ${styles.registryIcon}`}>02</span>
+                Terms of Service
+              </Link>
             </div>
           </motion.div>
         </div>
