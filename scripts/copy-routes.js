@@ -5,6 +5,7 @@ import { resolve } from 'path';
 const routes = [
   'nibs',
   'tinywins',
+  'tinywins/terms',
   'tinywins/delete-account',
   'products',
   'products/tinywins',

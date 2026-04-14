@@ -11,6 +11,7 @@ import NibsProduct from './components/NibsProduct.tsx'
 import TinyWinsProduct from './components/TinyWinsProduct.tsx'
 import TinyWinsPrivacy from './components/TinyWinsPrivacy.tsx'
 import TinyWinsDeleteAccount from './components/TinyWinsDeleteAccount.tsx'
+import TinyWinsTerms from './components/TinyWinsTerms.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/products/nibs" element={<NibsProduct />} />
         <Route path="/products/tinywins" element={<TinyWinsProduct />} />
         <Route path="/tinywins" element={<TinyWinsPrivacy />} />
+        <Route path="/tinywins/terms" element={<TinyWinsTerms />} />
         <Route path="/tinywins/delete-account" element={<TinyWinsDeleteAccount />} />
         <Route path="/nibs" element={<NibsPrivacy />} />
       </Routes>
