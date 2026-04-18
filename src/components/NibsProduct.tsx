@@ -39,9 +39,9 @@ export default function NibsProduct() {
           <motion.div className={styles.section} {...fade} transition={{ duration: 0.5, delay: 0.2 }}>
             <span className={`pixel-font ${styles.sectionLabel}`}>{'> '}DOWNLOAD</span>
             <div className={styles.storeButtons}>
-              <a href="#" className={styles.storeButton}>
+              <a href="https://apps.apple.com/us/app/nibs-fly-dodge/id6762011498" className={styles.storeButton} target="_blank" rel="noopener noreferrer">
                 <div>
-                  <span className={`pixel-font ${styles.storeLabel}`}>COMING SOON</span>
+                  <span className={`pixel-font ${styles.storeLabel}`}>DOWNLOAD ON THE</span>
                   <div className={styles.storeName}>App Store</div>
                 </div>
               </a>
