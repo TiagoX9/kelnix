@@ -11,12 +11,17 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kelnix.org/products/nibs</loc>
+    <loc>https://kelnix.org/cladget</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://kelnix.org/products/tinywins</loc>
+    <loc>https://kelnix.org/custom-ai-integration</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://kelnix.org/products/nibs</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -32,11 +37,6 @@
   </url>
   <url>
     <loc>https://kelnix.org/nibs</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://kelnix.org/tinywins</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

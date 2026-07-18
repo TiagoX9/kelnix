@@ -43,6 +43,44 @@
   border-color: rgba(255, 107, 0, 0.3);
 }
 
+.featured {
+  border-color: rgba(255, 107, 0, 0.45);
+  background: linear-gradient(160deg, rgba(255, 107, 0, 0.12), rgba(26, 26, 26, 0.9));
+  box-shadow: 0 0 40px rgba(255, 107, 0, 0.12);
+}
+
+.featured:hover {
+  border-color: var(--orange);
+}
+
+.badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 0.45rem;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+  background: var(--orange);
+  color: var(--black);
+  border-radius: 6px;
+}
+
+.cardCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  color: var(--orange);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+
+.cardCta:hover {
+  gap: 12px;
+}
+
 .glare {
   position: absolute;
   top: 0;
