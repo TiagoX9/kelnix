@@ -8,11 +8,20 @@ Kelnix is a software engineering company that builds two things:
 
 ## Services
 
+- **Custom AI Integration**: We integrate AI into any company, with any service they need — chatbots, RAG over internal docs, workflow automation, data analysis, sales and marketing AI, and bespoke LLM apps, connected to the tools they already use. https://kelnix.org/custom-ai-integration
 - **Web Development**: Custom web apps, SPAs, and platforms built with modern frameworks (React, Next.js, Node.js, Python, etc.)
 - **AI & Automation**: APIs and integrations for LLM orchestration, autonomous agent workflows, and intelligent automation.
 - **Cloud & DevOps**: Scalable infrastructure on AWS, GCP, and Azure with CI/CD, IaC, and container orchestration.
 - **Mobile Development**: Cross-platform mobile apps using React Native and Flutter.
 
+## Products
+
+- **Cladget**: A financial dashboard that unifies revenue and cost data from Stripe, AWS, OpenAI, Vercel, GitHub, Google Cloud and more into one place — real-time profit, burn rate, runway and AI-powered insights. https://kelnix.org/cladget · https://cladget.app
+- **Kelnix Receipt MCP API**: Turn any receipt into structured, accounting-ready JSON or Markdown with one API call. https://kelnix.org/products/receipt-mcp
+- **Kelnix DataMind Curator**: AI-Ready Data & Context Engineering API — connect any source, query with natural language, clean data, build AI context, redact PII. https://kelnix.org/products/datamind-curator
+- **Nibs**: A fun, casual mobile game. https://kelnix.org/products/nibs
+
 ## Contact
 
+Email: info@kelnix.org
 Website: https://kelnix.org

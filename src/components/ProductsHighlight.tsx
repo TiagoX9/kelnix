@@ -6,8 +6,8 @@ import styles from './ProductsHighlight.module.css';
 const products = [
   { name: 'Receipt MCP', logo: '/logos/receipt-mcp.png', route: '/products/receipt-mcp', label: 'API' },
   { name: 'DataMind', logo: '/logos/datamind-curator.png', route: '/products/datamind-curator', label: 'API' },
+  { name: 'Cladget', logo: '/logos/cladget.svg', route: '/cladget', label: 'FINANCE' },
   { name: 'Nibs', logo: '/logos/nibs.png', route: '/products/nibs', label: 'GAME' },
-  { name: 'Tiny Wins', logo: '/logos/tinywins.png', route: '/products/tinywins', label: 'APP' },
 ];
 
 export default function ProductsHighlight() {

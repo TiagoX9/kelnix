@@ -1,8 +1,28 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import styles from './Services.module.css';
 
-const services = [
+interface Service {
+  icon: string;
+  title: string;
+  desc: string;
+  tags: string[];
+  featured?: boolean;
+  route?: string;
+  cta?: string;
+}
+
+const services: Service[] = [
+  {
+    icon: '(*)',
+    title: 'Custom AI Integration',
+    desc: 'We integrate AI into any company, with any service you need — chatbots, RAG over your docs, workflow automation, data analysis and more, connected to the tools you already use.',
+    tags: ['LLMs', 'RAG', 'Agents', 'Automation'],
+    featured: true,
+    route: '/custom-ai-integration',
+    cta: 'Explore Custom AI',
+  },
   {
     icon: '{ }',
     title: 'Web Development',
@@ -41,7 +61,7 @@ const services = [
   },
 ];
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
+function ServiceCard({ service, index }: { service: Service; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -75,7 +95,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   return (
     <motion.div
       ref={cardRef}
-      className={styles.card}
+      className={`${styles.card} ${service.featured ? styles.featured : ''}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, y: 60 }}
@@ -85,6 +105,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       style={{ transition: 'transform 0.15s ease-out' }}
     >
       <div className={styles.glare} />
+      {service.featured && <span className={`pixel-font ${styles.badge}`}>NEW</span>}
       <span className={`pixel-font ${styles.icon}`}>{service.icon}</span>
       <h3 className={styles.cardTitle}>{service.title}</h3>
       <p className={styles.cardDesc}>{service.desc}</p>
@@ -93,6 +114,11 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
           <span key={tag} className={`pixel-font ${styles.tag}`}>{tag}</span>
         ))}
       </div>
+      {service.route && service.cta && (
+        <Link to={service.route} className={styles.cardCta}>
+          {service.cta} &rarr;
+        </Link>
+      )}
     </motion.div>
   );
 }

@@ -1,0 +1,31 @@
+<svg width="575" height="158" viewBox="15 32 575 158" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(20,20)">
+    <path d="M90 20C51.34 20 20 51.34 20 90C20 128.66 51.34 160 90 160C118.63 160 143.25 142.81 154.13 118.2"
+          stroke="#818CF8"
+          stroke-width="14"
+          stroke-linecap="round"/>
+
+    <path d="M58 106L82 82L102 97L130 62"
+          stroke="#818CF8"
+          stroke-width="12"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+    <path d="M115 62H130V77"
+          stroke="#818CF8"
+          stroke-width="12"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+  </g>
+
+  <text
+    x="220"
+    y="132"
+    fill="#818CF8"
+    font-family="Inter, Geist, Sora, sans-serif"
+    font-size="92"
+    font-weight="600"
+    letter-spacing="-3">
+    cladget
+  </text>
+</svg>

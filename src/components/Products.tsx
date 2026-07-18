@@ -12,7 +12,8 @@ interface Product {
   name: string;
   desc: string;
   logo: string;
-  tab: ProductTab;
+  /** A product can serve humans, agents, or both. */
+  tab: ProductTab | 'both';
   tags: string[];
   route: string;
 }
@@ -37,6 +38,15 @@ const products: Product[] = [
     route: '/products/datamind-curator',
   },
   {
+    id: 'cladget',
+    name: 'Cladget',
+    desc: 'Software for humans and agents — a financial dashboard that unifies revenue and cost data from Stripe, AWS, OpenAI, Vercel and more. Track profit, burn rate and runway in real time with AI-powered insights.',
+    logo: '/logos/cladget.svg',
+    tab: 'both',
+    tags: ['Web', 'iOS', 'Android', 'Finance', 'AI'],
+    route: '/cladget',
+  },
+  {
     id: 'nibs',
     name: 'Nibs',
     desc: 'A fun, casual mobile game where you guide Nibs the bird through challenges. Simple to pick up, hard to put down.',
@@ -45,20 +55,11 @@ const products: Product[] = [
     tags: ['iOS', 'Android', 'Game', 'Casual'],
     route: '/products/nibs',
   },
-  {
-    id: 'tinywins',
-    name: 'Tiny Wins',
-    desc: 'Build better habits, one tiny win at a time. Track daily habits, get AI-powered insights, and celebrate streaks with a clean, beautiful interface.',
-    logo: '/logos/tinywins.png',
-    tab: 'humans',
-    tags: ['iOS', 'Android', 'Habits', 'AI Insights'],
-    route: '/products/tinywins',
-  },
 ];
 
 export default function Products() {
   const [activeTab, setActiveTab] = useState<ProductTab>('agents');
-  const filtered = products.filter((p) => p.tab === activeTab);
+  const filtered = products.filter((p) => p.tab === activeTab || p.tab === 'both');
 
   return (
     <>
@@ -129,7 +130,11 @@ export default function Products() {
                       <div className={styles.cardInfo}>
                         <h3 className={styles.cardName}>{product.name}</h3>
                         <span className={`pixel-font ${styles.cardType}`}>
-                          {product.tab === 'agents' ? 'API / MCP SERVER' : 'MOBILE APP'}
+                          {product.tab === 'agents'
+                            ? 'API / MCP SERVER'
+                            : product.tab === 'both'
+                              ? 'HUMANS + AGENTS'
+                              : 'MOBILE APP'}
                         </span>
                       </div>
                     </div>
