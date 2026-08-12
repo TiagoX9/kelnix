@@ -1,0 +1,35 @@
+# Kelnix telemetry API.
+#
+# Install to /etc/systemd/system/kelnix-telemetry.service, then:
+#   systemctl daemon-reload && systemctl enable --now kelnix-telemetry
+#
+# Matches the pattern the other Kelnix services on this box already use
+# (native systemd behind the shared nginx, no Docker).
+
+[Unit]
+Description=Kelnix Telemetry API
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=root
+# `current` is a symlink to the active release, so a deploy is an atomic
+# symlink flip plus a restart rather than a half-copied directory.
+WorkingDirectory=/opt/kelnix-telemetry/current
+EnvironmentFile=/opt/kelnix-telemetry/shared/.env
+ExecStart=/usr/bin/node dist/server.js
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=kelnix-telemetry
+
+# The service only ever needs to read its own release and write nothing to disk;
+# everything durable lives in Postgres.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,652 @@
+/*
+ * Operations dashboard.
+ *
+ * Kelnix's dark palette, but denser than the marketing site: this is a tool for
+ * reading numbers, not a page for making an impression. The chart surface is
+ * #141414 — the exact value the series palette was validated against, so do not
+ * change it without re-running the palette check.
+ */
+
+.shell {
+  --surface: #141414;
+  --surface-raised: #1c1c1c;
+  --border: #2a2a2a;
+  --ink: #f5f5f5;
+  --ink-secondary: #a3a3a3;
+  --ink-muted: #6b6b6b;
+  --accent: #ff6b00;
+
+  min-height: 100vh;
+  background: #0d0d0d;
+  color: var(--ink);
+  /* The site hides the native cursor and draws its own. Fine on a landing page,
+     hostile on a dense table full of small targets. */
+  cursor: auto;
+}
+
+/*
+ * index.css styles every <section> for the marketing pages —
+ * `padding: 120px 8%; overflow: hidden; position: relative`. Inherited here it
+ * added ~240px of dead space around each panel and clipped the chart tooltip.
+ * The dashboard keeps semantic <section> elements and opts out of that instead.
+ */
+.shell section {
+  padding: 0;
+  overflow: visible;
+  position: static;
+}
+
+/* Re-assert the card's own padding, which the reset above would otherwise
+   flatten on any <section class="card">. */
+.shell section.card {
+  padding: 1.1rem;
+}
+
+.shell button,
+.shell input,
+.shell select,
+.shell a {
+  cursor: pointer;
+}
+
+.shell input,
+.shell select {
+  cursor: text;
+}
+
+/* ── Login ─────────────────────────────────────────────────────────────────── */
+
+.loginWrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loginTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.loginSub {
+  color: var(--ink-secondary);
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--ink-secondary);
+}
+
+.field input {
+  background: #0d0d0d;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.field input:focus-visible,
+.input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ── Chrome ────────────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.brandMark {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.brandSub {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  /* Wraps rather than overflowing: the fifth tab pushed the nav past a 390px
+     viewport and made the whole page scroll sideways. Wrapping keeps every tab
+     reachable, which a horizontal scroll strip would not. */
+  flex-wrap: wrap;
+}
+
+.tab,
+.tabActive {
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.85rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink-secondary);
+}
+
+.tab:hover {
+  color: var(--ink);
+  background: var(--surface-raised);
+}
+
+.tabActive {
+  color: var(--ink);
+  background: var(--surface-raised);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.headerRight {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rangePicker {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.range,
+.rangeActive {
+  background: none;
+  border: none;
+  padding: 0.35rem 0.7rem;
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--ink-secondary);
+}
+
+.rangeActive {
+  background: var(--accent);
+  color: #0d0d0d;
+  font-weight: 600;
+}
+
+.main {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Stat tiles ────────────────────────────────────────────────────────────── */
+
+.tileRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
+  gap: 0.85rem;
+}
+
+.tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.tileLabel {
+  font-size: 0.78rem;
+  color: var(--ink-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tileValue {
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.1;
+  /* Tabular figures so a column of numbers doesn't jitter as values change. */
+  font-variant-numeric: tabular-nums;
+}
+
+.tileDelta {
+  font-size: 0.8rem;
+  color: var(--ink-secondary);
+}
+
+.tileDeltaHint {
+  color: var(--ink-muted);
+}
+
+/* ── Cards & charts ────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem;
+}
+
+.chartGrid {
+  display: grid;
+  /* Two per row on a laptop, not three: a chart squeezed to a third of the
+     width scales its own labels into illegibility.
+     The min() matters — a bare minmax(520px, 1fr) cannot shrink below 520px, so
+     on a 390px phone it forced the whole page to scroll sideways. */
+  grid-template-columns: repeat(auto-fit, minmax(min(520px, 100%), 1fr));
+  gap: 1rem;
+}
+
+/* Grid and flex children default to min-width:auto, which lets a wide table
+   push its container instead of scrolling inside it. */
+.chartGrid > *,
+.main > * {
+  min-width: 0;
+}
+
+.chartWrap {
+  position: relative;
+}
+
+.chartTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.chart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.gridLine {
+  stroke: #262626;
+  stroke-width: 1;
+}
+
+.crosshair {
+  stroke: #4a4a4a;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+/* Axis and label text wears text tokens, never a series colour. */
+.axisLabel {
+  fill: #6b6b6b;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.directLabel {
+  fill: #a3a3a3;
+  font-size: 12px;
+}
+
+.legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--ink-secondary);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+  flex-shrink: 0;
+  margin-right: 0.4rem;
+  vertical-align: -1px;
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  pointer-events: none;
+  min-width: 140px;
+}
+
+.tooltip b {
+  margin-left: auto;
+  padding-left: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tooltip span {
+  display: flex;
+  align-items: center;
+  color: var(--ink-secondary);
+}
+
+/* ── Bar list ──────────────────────────────────────────────────────────────── */
+
+.barList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.barList li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.barTrack {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 26px;
+  display: flex;
+  align-items: center;
+}
+
+.barFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: #d95926;
+  opacity: 0.28;
+  /* Rounded data-end, square against the baseline it grows from. */
+  border-radius: 0 4px 4px 0;
+}
+
+.barLabel {
+  position: relative;
+  padding: 0 0.6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barValue {
+  color: var(--ink-secondary);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* ── Tables ────────────────────────────────────────────────────────────────── */
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #1f1f1f;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.table code {
+  font-size: 0.8rem;
+  color: var(--ink-secondary);
+}
+
+.kindTag {
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+}
+
+.statusMuted {
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+}
+
+.subtle {
+  display: block;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+}
+
+.errorInline {
+  display: block;
+  color: #d03b3b;
+  font-size: 0.75rem;
+}
+
+/* ── Logs ──────────────────────────────────────────────────────────────────── */
+
+.logList {
+  list-style: none;
+}
+
+.logRow {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60px 120px 1fr auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #1f1f1f;
+  padding: 0.55rem 0.25rem;
+  font: inherit;
+  font-size: 0.83rem;
+  color: var(--ink);
+}
+
+.logRow:hover {
+  background: var(--surface-raised);
+}
+
+.logLevel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+}
+
+.logApp {
+  color: var(--ink-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logMessage {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logTime {
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.logContext {
+  background: #0d0d0d;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin: 0.25rem 0 0.75rem;
+  font-size: 0.75rem;
+  color: var(--ink-secondary);
+  overflow-x: auto;
+}
+
+@media (max-width: 720px) {
+  .logRow {
+    grid-template-columns: 55px 1fr;
+    row-gap: 0.2rem;
+  }
+}
+
+/* ── Controls ──────────────────────────────────────────────────────────────── */
+
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.9rem 0 0.25rem;
+}
+
+.input {
+  background: #0d0d0d;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.85rem;
+  min-width: 140px;
+}
+
+.primaryButton {
+  background: var(--accent);
+  color: #0d0d0d;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1.1rem;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.primaryButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.secondaryButton {
+  background: none;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 1.1rem;
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.83rem;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.secretBox {
+  background: #0d0d0d;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.85rem;
+}
+
+.secretBox code {
+  display: block;
+  margin-top: 0.5rem;
+  word-break: break-all;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.note {
+  color: var(--ink-secondary);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  max-width: 70ch;
+}
+
+.empty {
+  color: var(--ink-muted);
+  font-size: 0.88rem;
+  padding: 1.25rem 0;
+}
+
+.error {
+  color: #e66767;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}

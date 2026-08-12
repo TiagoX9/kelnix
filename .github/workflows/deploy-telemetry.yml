@@ -1,0 +1,105 @@
+# Build the telemetry service on the runner and ship it to the VPS.
+#
+# The server has 1.9 GB of RAM and runs four other Kelnix services; it must
+# never be asked to compile anything. The runner builds, rsync ships the
+# artifact, and the server only flips a symlink and restarts.
+name: Deploy telemetry
+
+on:
+  push:
+    branches: [main]
+    # Only when the service itself changes. Editing a marketing page must not
+    # restart the API, and vice versa.
+    paths:
+      - 'server/**'
+      - '.github/workflows/deploy-telemetry.yml'
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-telemetry
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  SERVER: 5.161.229.243
+  APP_DIR: /opt/kelnix-telemetry
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20' # match the server's node
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+
+      - name: Build
+        working-directory: server
+        run: |
+          npm ci
+          npm run build
+
+      - name: Prune to production dependencies
+        working-directory: server
+        # The runner needs devDependencies to compile; the server does not need
+        # them to run, and every megabyte matters on a 1.9 GB box.
+        run: npm prune --omit=dev
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$SERVER" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Ship release
+        run: |
+          RELEASE="$APP_DIR/releases/${{ github.sha }}"
+          SSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes root@$SERVER"
+
+          $SSH "mkdir -p $RELEASE $APP_DIR/shared"
+
+          # Ship into a fresh directory rather than rsyncing over the live one:
+          # for the length of a transfer, an in-place copy is a half-updated app.
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
+            server/dist server/node_modules server/package.json \
+            "root@$SERVER:$RELEASE/"
+
+      - name: Migrate, flip symlink, restart
+        run: |
+          RELEASE="$APP_DIR/releases/${{ github.sha }}"
+          SSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes root@$SERVER"
+
+          # Migrations run against the new code before it starts serving. They
+          # are additive and idempotent, so this is safe to re-run.
+          $SSH "set -a && . $APP_DIR/shared/.env && set +a && cd $RELEASE && node dist/migrate.js"
+
+          # Atomic swap: ln -sfn to a temp name then mv, so `current` is never
+          # briefly missing.
+          $SSH "ln -sfn $RELEASE $APP_DIR/current.new && mv -T $APP_DIR/current.new $APP_DIR/current"
+          $SSH "systemctl restart kelnix-telemetry"
+
+      - name: Verify it came back
+        run: |
+          SSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes root@$SERVER"
+          for i in $(seq 1 15); do
+            if $SSH "curl -sf http://127.0.0.1:4010/healthz" >/dev/null 2>&1; then
+              echo "healthy"; exit 0
+            fi
+            sleep 2
+          done
+          echo "service did not become healthy after restart"
+          $SSH "journalctl -u kelnix-telemetry -n 50 --no-pager"
+          exit 1
+
+      - name: Prune old releases
+        # Keep the last five so a rollback is a symlink flip, not a rebuild.
+        run: |
+          SSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes root@$SERVER"
+          $SSH "cd $APP_DIR/releases && ls -1t | tail -n +6 | xargs -r rm -rf"

@@ -5,6 +5,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
+    # The telemetry service deploys to the VPS on its own workflow. A change
+    # confined to it has no effect on the static site, so don't rebuild Pages.
+    paths-ignore:
+      - 'server/**'
+      - 'sdk/**'
+      - '.github/workflows/deploy-telemetry.yml'
   workflow_dispatch:
 
 permissions:
@@ -40,6 +46,12 @@ jobs:
         env:
           # Use / for custom domain or user/organization pages; use /<repo-name>/ for project pages
           VITE_FORMSPREE_ENDPOINT: ${{ secrets.VITE_FORMSPREE_ENDPOINT }}
+          # Where /admin talks to, and the public key the first-party page
+          # tracker ships with. VITE_* values are inlined at build time, so they
+          # have to be set here. The telemetry key is public by design — it can
+          # only write events for one app and is revocable from /admin.
+          VITE_TELEMETRY_URL: https://telemetry.kelnix.org
+          VITE_TELEMETRY_KEY: ${{ secrets.VITE_TELEMETRY_KEY }}
         run: npm run build
 
       - name: Upload artifact

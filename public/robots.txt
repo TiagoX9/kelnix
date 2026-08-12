@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# The operations dashboard. Keeping it out of the index is tidiness, not
+# security — the page is public HTML and every byte of data behind it is
+# gated by the telemetry API.
+Disallow: /admin
+
 Sitemap: https://kelnix.org/sitemap.xml
