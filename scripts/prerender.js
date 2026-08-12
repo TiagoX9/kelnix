@@ -11,6 +11,15 @@ const dist = resolve(import.meta.dirname, '..', 'dist');
  * useSeo hook keeps these in sync during in-app SPA navigation.
  */
 const routes = {
+  // Not a marketing page — prerendered only so /admin resolves to a real
+  // index.html. Without it GitHub Pages answers 404 and the SPA has to
+  // recover via the 404.html redirect trick, which costs a round trip and a
+  // visible flash on every load.
+  admin: {
+    title: 'Kelnix — Operations',
+    description: 'Internal operations dashboard.',
+    noindex: true,
+  },
   products: {
     title: 'Products — Software for Humans, APIs for Agents | Kelnix',
     description:
@@ -128,6 +137,15 @@ for (const [route, meta] of Object.entries(routes)) {
     html = html.replace(
       /<meta name="keywords"[^>]*>/,
       `<meta name="keywords" content="${esc(meta.keywords)}" />`,
+    );
+  }
+  // The operations dashboard is prerendered so GitHub Pages serves it directly
+  // with a 200 instead of bouncing through 404.html — but it must not be
+  // indexed. robots.txt disallows it too; this is the belt to that braces.
+  if (meta.noindex) {
+    html = html.replace(
+      /<meta name="robots"[^>]*>/,
+      '<meta name="robots" content="noindex, nofollow" />',
     );
   }
   if (meta.jsonLd) {
