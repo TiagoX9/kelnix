@@ -54,6 +54,20 @@
   color: rgba(255, 255, 255, 0.3);
 }
 
+/* Quieter than the nav links above — it is a staff door, not a destination. */
+.admin {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.admin:hover {
+  color: var(--orange);
+}
+
 .pixelLine {
   position: absolute;
   top: 0;

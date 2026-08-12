@@ -19,6 +19,12 @@ export default function Footer() {
           <p className={styles.copy}>
             &copy; {new Date().getFullYear()} Kelnix. All rights reserved.
           </p>
+          {/* Internal operations dashboard. A plain link rather than a hidden
+              one: the page is public HTML holding no secrets, and every byte
+              behind it is gated by the telemetry API. */}
+          <a className={styles.admin} href="/admin" rel="nofollow">
+            Admin
+          </a>
         </div>
       </div>
       <motion.div
