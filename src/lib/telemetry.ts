@@ -8,6 +8,12 @@
 //
 // That is why this does not sit behind the consent banner: there is nothing to
 // consent to. GA4 still does — see ConsentBanner.
+//
+// The one exception is new-vs-returning, which by definition requires
+// remembering something on the device. That single flag IS consent-gated, and
+// the classification happens here so only the resulting label is sent.
+
+import { getStoredConsent } from './analytics';
 
 const ENDPOINT = (import.meta.env.VITE_TELEMETRY_URL ?? '').replace(/\/$/, '');
 const API_KEY = import.meta.env.VITE_TELEMETRY_KEY ?? '';
@@ -15,6 +21,47 @@ const API_KEY = import.meta.env.VITE_TELEMETRY_KEY ?? '';
 const enabled = Boolean(ENDPOINT && API_KEY);
 
 const SESSION_KEY = 'kelnix_telemetry_session';
+const SEEN_KEY = 'kelnix_telemetry_seen';
+
+type VisitType = 'new' | 'returning';
+
+// Computed once per page load. Without this cache the first pageview writes the
+// flag and every pageview after it would read that flag back and report
+// "returning", so a first-time visitor reading five pages would look like one
+// new visitor and four returning ones.
+let cachedVisitType: VisitType | undefined;
+let visitTypeResolved = false;
+
+/**
+ * Whether this browser has seen the site before.
+ *
+ * Deliberately classified here rather than server-side: the label is all that
+ * gets sent, so no stable identifier ever leaves the device and the server
+ * still cannot follow anyone across days.
+ *
+ * It needs to remember one flag on the device, which is exactly what the
+ * consent banner governs — so without granted consent it returns undefined and
+ * those visits simply go unclassified. The plain visitor count is unaffected;
+ * that one is cookieless and always accurate.
+ */
+function visitType(): VisitType | undefined {
+  if (visitTypeResolved) return cachedVisitType;
+
+  if (getStoredConsent() !== 'granted') {
+    // Not resolved — consent may be granted later in the session.
+    return undefined;
+  }
+
+  try {
+    cachedVisitType = localStorage.getItem(SEEN_KEY) ? 'returning' : 'new';
+    localStorage.setItem(SEEN_KEY, '1');
+  } catch {
+    cachedVisitType = undefined;
+  }
+
+  visitTypeResolved = true;
+  return cachedVisitType;
+}
 
 /**
  * A per-tab session id, held in sessionStorage so it dies with the tab. This
@@ -66,12 +113,14 @@ function send(event: TelemetryEvent): void {
 
 /** Record a page view. Called on initial load and on every route change. */
 export function trackPageView(path: string): void {
+  const visit = visitType();
   send({
     name: 'pageview',
     props: {
       path,
       referrer: document.referrer || '',
       title: document.title,
+      ...(visit ? { visit_type: visit } : {}),
     },
   });
 }

@@ -10,7 +10,15 @@
 // is the only thing that touches this file.
 
 export const EVENT = {
-  /** A page or screen was viewed. props: { path, referrer?, title? } */
+  /**
+   * A page or screen was viewed.
+   * props: { path, referrer?, title?, visit_type?: 'new' | 'returning' }
+   *
+   * `visit_type` is classified on the client — the browser knows whether it has
+   * been here before and sends only the label. No stable identifier is ever
+   * transmitted or stored, so the server still cannot follow anyone across
+   * days. It is absent unless the visitor accepted analytics storage.
+   */
   PAGEVIEW: 'pageview',
   /** A visitor session began. Emitted once per session by the browser SDK. */
   SESSION_START: 'session_start',
@@ -53,6 +61,15 @@ export type EventName = (typeof EVENT)[keyof typeof EVENT];
 export const METRIC = {
   PAGEVIEWS: 'pageviews',
   VISITORS: 'visitors',
+  /**
+   * Visitors whose browser had not seen the site before, and those whose had.
+   *
+   * These two do NOT sum to `visitors`: they only count visitors who accepted
+   * analytics storage, because classifying a return requires remembering
+   * something on the device. Treat them as a sample, not a split.
+   */
+  VISITORS_NEW: 'visitors_new',
+  VISITORS_RETURNING: 'visitors_returning',
   SESSIONS: 'sessions',
   REGISTRATIONS: 'registrations',
   ACTIVE_USERS: 'active_users',

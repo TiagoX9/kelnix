@@ -3,16 +3,18 @@ import { api } from './api';
 import Login from './Login';
 import Overview from './Overview';
 import LogsPanel from './LogsPanel';
+import VisitsPanel from './VisitsPanel';
 import AppsPanel from './AppsPanel';
 import HealthPanel from './HealthPanel';
 import SourcesPanel from './SourcesPanel';
 import ChangePassword from './ChangePassword';
 import styles from './Admin.module.css';
 
-type Tab = 'overview' | 'logs' | 'health' | 'sources' | 'apps';
+type Tab = 'overview' | 'visits' | 'logs' | 'health' | 'sources' | 'apps';
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'overview', label: 'Overview' },
+  { id: 'visits', label: 'Visits' },
   { id: 'logs', label: 'Logs' },
   { id: 'health', label: 'Health' },
   { id: 'sources', label: 'Sources' },
@@ -85,7 +87,7 @@ export default function AdminPage() {
         </nav>
 
         <div className={styles.headerRight}>
-          {tab === 'overview' && (
+          {(tab === 'overview' || tab === 'logs') && (
             <div className={styles.rangePicker}>
               {RANGES.map((range) => (
                 <button
@@ -121,7 +123,8 @@ export default function AdminPage() {
           <ChangePassword email={user.email} onClose={() => setChangingPassword(false)} />
         )}
         {tab === 'overview' && <Overview days={days} />}
-        {tab === 'logs' && <LogsPanel />}
+        {tab === 'visits' && <VisitsPanel />}
+        {tab === 'logs' && <LogsPanel days={days} />}
         {tab === 'health' && <HealthPanel />}
         {tab === 'sources' && <SourcesPanel />}
         {tab === 'apps' && <AppsPanel />}

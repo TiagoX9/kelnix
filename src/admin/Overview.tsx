@@ -178,12 +178,22 @@ export default function Overview({ days }: Props) {
 
       <section className={styles.card}>
         <p className={styles.chartTitle}>Per application</p>
+        <p className={styles.note}>
+          <strong>New</strong> and <strong>Returning</strong> do not add up to{' '}
+          <strong>Visitors</strong>, and are not meant to. Telling a return visit apart
+          requires remembering something on the device, so only visitors who accepted
+          the cookie banner can be classified. Read them as a sample of the split, not
+          a breakdown of the total — the Visitors count itself is cookieless and
+          complete.
+        </p>
         <div className={styles.tableScroll}>
           <table className={styles.table}>
             <thead>
               <tr>
                 <th>App</th>
                 <th>Visitors</th>
+                <th>New</th>
+                <th>Returning</th>
                 <th>Registrations</th>
                 <th>Active users</th>
                 <th>Revenue</th>
@@ -205,6 +215,8 @@ export default function Overview({ days }: Props) {
                     <span className={styles.kindTag}>{app.kind}</span>
                   </td>
                   <td>{formatNumber(app.metrics.visitors?.current ?? 0)}</td>
+                  <td>{formatNumber(app.metrics.visitors_new?.current ?? 0)}</td>
+                  <td>{formatNumber(app.metrics.visitors_returning?.current ?? 0)}</td>
                   <td>{formatNumber(app.metrics.registrations?.current ?? 0)}</td>
                   <td>{formatNumber(app.metrics.active_users?.current ?? 0)}</td>
                   <td>{formatCents(app.metrics.revenue_cents?.current ?? 0)}</td>
@@ -256,23 +268,32 @@ function Breakdown({ title, rows }: { title: string; rows: BreakdownRow[] }) {
       {rows.length === 0 ? (
         <p className={styles.empty}>Nothing yet.</p>
       ) : (
-        <ul className={styles.barList}>
-          {rows.slice(0, 10).map((row) => (
-            <li key={row.key}>
-              <div className={styles.barTrack}>
-                <div
-                  className={styles.barFill}
-                  style={{ width: `${(row.views / max) * 100}%` }}
-                  aria-hidden="true"
-                />
-                <span className={styles.barLabel} title={row.key}>
-                  {row.key || '(direct)'}
-                </span>
-              </div>
-              <span className={styles.barValue}>{formatNumber(row.views)}</span>
-            </li>
-          ))}
-        </ul>
+        <>
+          <div className={styles.barHead}>
+            <span>views</span>
+            <span>visitors</span>
+          </div>
+          <ul className={styles.barList}>
+            {rows.slice(0, 10).map((row) => (
+              <li key={row.key}>
+                <div className={styles.barTrack}>
+                  <div
+                    className={styles.barFill}
+                    style={{ width: `${(row.views / max) * 100}%` }}
+                    aria-hidden="true"
+                  />
+                  <span className={styles.barLabel} title={row.key}>
+                    {row.key || '(direct)'}
+                  </span>
+                </div>
+                <span className={styles.barValue}>{formatNumber(row.views)}</span>
+                {/* 300 views from 12 people is a very different page from 300
+                    views from 300 people. The query already returned this. */}
+                <span className={styles.barValueMuted}>{formatNumber(row.visitors)}</span>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   );

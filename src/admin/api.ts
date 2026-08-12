@@ -133,6 +133,23 @@ export interface MetricRow {
   day: string;
 }
 
+export interface EventRow {
+  id: number;
+  ts: string;
+  name: string;
+  props: Record<string, unknown>;
+  anon_id: string | null;
+  user_ref: string | null;
+  slug: string;
+}
+
+export interface EventNameRow {
+  slug: string;
+  name: string;
+  count: number;
+  last_seen: string;
+}
+
 // ── Endpoints ───────────────────────────────────────────────────────────────
 
 export const api = {
@@ -172,6 +189,18 @@ export const api = {
     request<{ by: string; rows: BreakdownRow[] }>(
       `/v1/traffic/breakdown?by=${by}&days=${days}${app ? `&app=${app}` : ''}`,
     ),
+
+  events: (params: { app?: string; name?: string; before_id?: number; limit?: number }) => {
+    const search = new URLSearchParams();
+    if (params.app) search.set('app', params.app);
+    if (params.name) search.set('name', params.name);
+    if (params.before_id) search.set('before_id', String(params.before_id));
+    search.set('limit', String(params.limit ?? 100));
+    return request<{ events: EventRow[] }>(`/v1/events/recent?${search.toString()}`);
+  },
+
+  eventNames: (days: number) =>
+    request<{ names: EventNameRow[] }>(`/v1/events/names?days=${days}`),
 
   apps: () => request<{ apps: AppRow[] }>('/v1/apps'),
 

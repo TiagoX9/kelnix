@@ -37,6 +37,31 @@ export async function runRollup(lookbackDays = LOOKBACK_DAYS): Promise<number> {
       SELECT app_id, day, '${METRIC.SESSIONS}', COUNT(DISTINCT session_id)::bigint
         FROM window_events WHERE session_id IS NOT NULL GROUP BY app_id, day
 
+      -- New vs returning.
+      --
+      -- A visitor is "new" if ANY pageview that day said so, and "returning"
+      -- only if none did. Without that rule someone who arrives new and then
+      -- reloads — the second load reads the flag their first load wrote — would
+      -- be counted in both buckets on the same day.
+      UNION ALL
+      SELECT app_id, day, '${METRIC.VISITORS_NEW}', COUNT(*)::bigint FROM (
+        SELECT app_id, day, anon_id
+          FROM window_events
+         WHERE name = 'pageview' AND anon_id IS NOT NULL
+           AND props ->> 'visit_type' IN ('new', 'returning')
+         GROUP BY app_id, day, anon_id
+        HAVING bool_or(props ->> 'visit_type' = 'new')
+      ) first_timers GROUP BY app_id, day
+      UNION ALL
+      SELECT app_id, day, '${METRIC.VISITORS_RETURNING}', COUNT(*)::bigint FROM (
+        SELECT app_id, day, anon_id
+          FROM window_events
+         WHERE name = 'pageview' AND anon_id IS NOT NULL
+           AND props ->> 'visit_type' IN ('new', 'returning')
+         GROUP BY app_id, day, anon_id
+        HAVING NOT bool_or(props ->> 'visit_type' = 'new')
+      ) repeats GROUP BY app_id, day
+
       -- Users
       UNION ALL
       SELECT app_id, day, '${METRIC.REGISTRATIONS}', COUNT(*)::bigint

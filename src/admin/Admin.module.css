@@ -425,6 +425,33 @@
   color: var(--ink-secondary);
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
+  min-width: 3.2rem;
+  text-align: right;
+}
+
+.barValueMuted {
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  min-width: 3.2rem;
+  text-align: right;
+}
+
+/* Column headings for the two numeric columns on each bar row. */
+.barHead {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  margin-bottom: 0.35rem;
+}
+
+.barHead span {
+  min-width: 3.2rem;
+  text-align: right;
 }
 
 /* ── Tables ────────────────────────────────────────────────────────────────── */
@@ -556,6 +583,31 @@
     grid-template-columns: 55px 1fr;
     row-gap: 0.2rem;
   }
+}
+
+/* Traffic context above the log list, so error counts can be judged against
+   how much traffic produced them. */
+.trafficStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.83rem;
+  color: var(--ink-secondary);
+}
+
+.trafficStrip strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.streamSummary {
+  align-self: center;
+  font-size: 0.83rem;
+  color: var(--ink-secondary);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Controls ──────────────────────────────────────────────────────────────── */
