@@ -631,6 +631,13 @@
   font-size: 0.85rem;
 }
 
+.passwordForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-width: 380px;
+}
+
 .note {
   color: var(--ink-secondary);
   font-size: 0.82rem;

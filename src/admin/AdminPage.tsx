@@ -6,6 +6,7 @@ import LogsPanel from './LogsPanel';
 import AppsPanel from './AppsPanel';
 import HealthPanel from './HealthPanel';
 import SourcesPanel from './SourcesPanel';
+import ChangePassword from './ChangePassword';
 import styles from './Admin.module.css';
 
 type Tab = 'overview' | 'logs' | 'health' | 'sources' | 'apps';
@@ -33,6 +34,7 @@ export default function AdminPage() {
   const [checking, setChecking] = useState(true);
   const [tab, setTab] = useState<Tab>('overview');
   const [days, setDays] = useState(30);
+  const [changingPassword, setChangingPassword] = useState(false);
 
   const check = useCallback(() => {
     api
@@ -100,6 +102,13 @@ export default function AdminPage() {
           <button
             type="button"
             className={styles.linkButton}
+            onClick={() => setChangingPassword((open) => !open)}
+          >
+            {changingPassword ? 'Close' : 'Password'}
+          </button>
+          <button
+            type="button"
+            className={styles.linkButton}
             onClick={() => void api.logout().then(() => setUser(null))}
           >
             Sign out
@@ -108,6 +117,9 @@ export default function AdminPage() {
       </header>
 
       <main className={styles.main}>
+        {changingPassword && (
+          <ChangePassword email={user.email} onClose={() => setChangingPassword(false)} />
+        )}
         {tab === 'overview' && <Overview days={days} />}
         {tab === 'logs' && <LogsPanel />}
         {tab === 'health' && <HealthPanel />}

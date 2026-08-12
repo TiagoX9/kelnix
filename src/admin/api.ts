@@ -146,6 +146,12 @@ export const api = {
 
   logout: () => request<{ ok: true }>('/v1/auth/logout', { method: 'POST' }),
 
+  changePassword: (currentPassword: string, newPassword: string) =>
+    request<{ ok: true }>('/v1/auth/password', {
+      method: 'POST',
+      body: JSON.stringify({ current_password: currentPassword, new_password: newPassword }),
+    }),
+
   overview: (days: number) => request<{ days: number; apps: OverviewApp[] }>(`/v1/overview?days=${days}`),
 
   metrics: (metric: string, days: number, app?: string) =>
