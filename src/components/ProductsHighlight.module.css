@@ -38,51 +38,103 @@
   color: var(--orange);
 }
 
-.logos {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto 40px;
 }
 
-.product {
+/* The section sits on --black, so cards drop to --deep-black to separate —
+   the inverse of /products, where the page is deep black and cards lift. */
+.card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 24px 28px;
+  height: 100%;
+  padding: 28px 24px;
   background: rgba(13, 13, 13, 0.8);
   border: 2px solid rgba(255, 107, 0, 0.1);
   border-radius: 20px;
-  transition: border-color 0.2s, transform 0.2s;
-  min-width: 140px;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.3s ease, transform 0.2s ease;
 }
 
-.product:hover {
+.card:hover {
   border-color: rgba(255, 107, 0, 0.4);
   transform: translateY(-4px);
 }
 
+.cardArrow {
+  position: absolute;
+  top: 28px;
+  right: 24px;
+  font-size: 1.2rem;
+  color: var(--orange);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .cardArrow {
+  opacity: 1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
 .logo {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
   border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.cardInfo {
+  flex: 1;
+  min-width: 0;
 }
 
 .productName {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: var(--white);
+  margin-bottom: 4px;
 }
 
 .productLabel {
   font-size: 0.45rem;
-  padding: 4px 10px;
+  color: var(--orange);
+  letter-spacing: 1px;
+}
+
+.cardDesc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cardTag {
+  font-size: 0.5rem;
+  padding: 6px 12px;
   background: rgba(255, 107, 0, 0.1);
   color: var(--orange);
-  border-radius: 6px;
+  border-radius: 8px;
   letter-spacing: 1px;
 }
 
@@ -106,13 +158,13 @@
 }
 
 @media (max-width: 600px) {
-  .logos {
+  .grid {
+    grid-template-columns: 1fr;
     gap: 16px;
   }
 
-  .product {
-    padding: 18px 20px;
-    min-width: 120px;
+  .card {
+    padding: 22px 20px;
   }
 
   .logo {

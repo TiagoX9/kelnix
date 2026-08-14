@@ -16,10 +16,11 @@ Kelnix is a software engineering company that builds two things:
 
 ## Products
 
+- **Revvify**: AI marketing & sales for humans and AI agents — it plans, writes, schedules, publishes and sells across LinkedIn, TikTok and email; you approve. Agent-native with an MCP server and REST API. https://kelnix.org/revvify · https://revvify.io
 - **Cladget**: A financial dashboard that unifies revenue and cost data from Stripe, AWS, OpenAI, Vercel, GitHub, Google Cloud and more into one place — real-time profit, burn rate, runway and AI-powered insights. https://kelnix.org/cladget · https://cladget.app
+- **Nibs**: A fun, casual mobile game. https://kelnix.org/products/nibs
 - **Kelnix Receipt MCP API**: Turn any receipt into structured, accounting-ready JSON or Markdown with one API call. https://kelnix.org/products/receipt-mcp
 - **Kelnix DataMind Curator**: AI-Ready Data & Context Engineering API — connect any source, query with natural language, clean data, build AI context, redact PII. https://kelnix.org/products/datamind-curator
-- **Nibs**: A fun, casual mobile game. https://kelnix.org/products/nibs
 
 ## Contact
 

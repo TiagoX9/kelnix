@@ -20,22 +20,13 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 'receipt-mcp',
-    name: 'Kelnix Receipt MCP API',
-    desc: 'Turn any receipt into structured, accounting-ready JSON or Markdown with one API call. AI vision extracts merchant, date, line items, tax, totals, and suggests GL accounts.',
-    logo: '/logos/receipt-mcp.png',
-    tab: 'agents',
-    tags: ['MCP', 'API', 'AI Vision', 'Accounting'],
-    route: '/products/receipt-mcp',
-  },
-  {
-    id: 'datamind-curator',
-    name: 'Kelnix DataMind Curator',
-    desc: 'AI-Ready Data & Context Engineering API. Connect any data source, query with natural language, clean data, build AI context, redact PII.',
-    logo: '/logos/datamind-curator.png',
-    tab: 'agents',
-    tags: ['MCP', 'API', 'NLQ', 'Data', 'RAG'],
-    route: '/products/datamind-curator',
+    id: 'revvify',
+    name: 'Revvify',
+    desc: 'Software for humans and agents — your AI marketing and sales team. It plans, writes, schedules, publishes and sells across LinkedIn, TikTok and email; you approve. Agent-native with an MCP server and REST API.',
+    logo: '/logos/revvify.png',
+    tab: 'both',
+    tags: ['Web', 'iOS', 'Android', 'Marketing', 'Sales', 'MCP'],
+    route: '/revvify',
   },
   {
     id: 'cladget',
@@ -54,6 +45,24 @@ const products: Product[] = [
     tab: 'humans',
     tags: ['iOS', 'Android', 'Game', 'Casual'],
     route: '/products/nibs',
+  },
+  {
+    id: 'receipt-mcp',
+    name: 'Kelnix Receipt MCP API',
+    desc: 'Turn any receipt into structured, accounting-ready JSON or Markdown with one API call. AI vision extracts merchant, date, line items, tax, totals, and suggests GL accounts.',
+    logo: '/logos/receipt-mcp.png',
+    tab: 'agents',
+    tags: ['MCP', 'API', 'AI Vision', 'Accounting'],
+    route: '/products/receipt-mcp',
+  },
+  {
+    id: 'datamind-curator',
+    name: 'Kelnix DataMind Curator',
+    desc: 'AI-Ready Data & Context Engineering API. Connect any data source, query with natural language, clean data, build AI context, redact PII.',
+    logo: '/logos/datamind-curator.png',
+    tab: 'agents',
+    tags: ['MCP', 'API', 'NLQ', 'Data', 'RAG'],
+    route: '/products/datamind-curator',
   },
 ];
 

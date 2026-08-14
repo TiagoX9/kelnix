@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import RobotMascot from './RobotMascot';
 import styles from './Hero.module.css';
 
 export default function Hero() {
+  const navigate = useNavigate();
   const letterVariants = {
     hidden: { y: 80, opacity: 0, rotateX: -90 },
     visible: (i: number) => ({
@@ -76,6 +78,18 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
             >
               <span className="pixel-font" style={{ fontSize: '0.7rem' }}>HIRE US</span>
+            </motion.a>
+            <motion.a
+              href="/products"
+              className={styles.ctaSecondary}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/products');
+              }}
+            >
+              <span className="pixel-font" style={{ fontSize: '0.7rem' }}>SEE PRODUCTS</span>
             </motion.a>
             <motion.a
               href="#services"

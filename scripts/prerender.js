@@ -23,9 +23,34 @@ const routes = {
   products: {
     title: 'Products — Software for Humans, APIs for Agents | Kelnix',
     description:
-      'Explore Kelnix products: Cladget financial dashboard, Receipt MCP API, DataMind Curator and Nibs. Software for humans and APIs for agents.',
+      'Explore Kelnix products: Revvify AI marketing and sales, Cladget financial dashboard, Nibs, Receipt MCP API and DataMind Curator. Software for humans and APIs for agents.',
     keywords:
-      'Kelnix products, Cladget, Receipt MCP API, DataMind Curator, Nibs, APIs for agents, apps for humans',
+      'Kelnix products, Revvify, Cladget, Nibs, Receipt MCP API, DataMind Curator, APIs for agents, apps for humans',
+  },
+  revvify: {
+    title: 'Revvify — AI Marketing & Sales for Humans and Agents | Kelnix',
+    description:
+      'Revvify is your AI marketing and sales team. It plans, writes, schedules, publishes and sells — you approve. Agent-native with an MCP server and REST API, multi-channel posting, lead scoring and self-improving AI Loops. Built by Kelnix.',
+    keywords:
+      'Revvify, AI marketing, AI sales, marketing automation, content scheduling, lead scoring, MCP server, agent-native, LinkedIn automation, TikTok marketing, email newsletter, brand voice AI, Kelnix',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'Revvify',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web, iOS, Android',
+      url: `${SITE}/revvify`,
+      sameAs: ['https://revvify.io'],
+      description:
+        'Revvify is an AI marketing and sales platform for humans and AI agents. It plans, writes, schedules, publishes and sells — you approve. Agent-native with an MCP server and REST API.',
+      publisher: { '@type': 'Organization', name: 'Kelnix', url: SITE },
+      offers: [
+        { '@type': 'Offer', price: '0', priceCurrency: 'EUR', name: 'Free' },
+        { '@type': 'Offer', price: '12', priceCurrency: 'EUR', name: 'Starter' },
+        { '@type': 'Offer', price: '49', priceCurrency: 'EUR', name: 'Pro' },
+        { '@type': 'Offer', price: '149', priceCurrency: 'EUR', name: 'Agency' },
+      ],
+    },
   },
   cladget: {
     title: 'Cladget — Financial Dashboard for Revenue, Costs & Profit | Kelnix',

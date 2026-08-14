@@ -8,6 +8,7 @@ import ReceiptMcpProduct from './components/ReceiptMcpProduct.tsx'
 import DataMindProduct from './components/DataMindProduct.tsx'
 import NibsProduct from './components/NibsProduct.tsx'
 import CladgetProduct from './components/CladgetProduct.tsx'
+import RevvifyProduct from './components/RevvifyProduct.tsx'
 import CustomAI from './components/CustomAI.tsx'
 import { usePageTracking } from './hooks/usePageTracking.ts'
 
@@ -32,6 +33,7 @@ export default function AppRoutes() {
       <Route path="/products/receipt-mcp" element={<ReceiptMcpProduct />} />
       <Route path="/products/datamind-curator" element={<DataMindProduct />} />
       <Route path="/products/nibs" element={<NibsProduct />} />
+      <Route path="/revvify" element={<RevvifyProduct />} />
       <Route path="/cladget" element={<CladgetProduct />} />
       <Route path="/custom-ai-integration" element={<CustomAI />} />
       <Route path="/nibs" element={<NibsPrivacy />} />
