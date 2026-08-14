@@ -72,17 +72,9 @@ export default function Hero() {
             transition={{ delay: 1.9, duration: 0.6 }}
           >
             <motion.a
-              href="#contact"
+              href="/products"
               className={styles.ctaPrimary}
               whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 107, 0, 0.4)' }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="pixel-font" style={{ fontSize: '0.7rem' }}>HIRE US</span>
-            </motion.a>
-            <motion.a
-              href="/products"
-              className={styles.ctaSecondary}
-              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={(e) => {
                 e.preventDefault();
@@ -90,6 +82,14 @@ export default function Hero() {
               }}
             >
               <span className="pixel-font" style={{ fontSize: '0.7rem' }}>SEE PRODUCTS</span>
+            </motion.a>
+            <motion.a
+              href="#contact"
+              className={styles.ctaSecondary}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="pixel-font" style={{ fontSize: '0.7rem' }}>HIRE US</span>
             </motion.a>
             <motion.a
               href="#services"
