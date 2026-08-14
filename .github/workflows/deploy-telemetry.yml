@@ -1,8 +1,8 @@
 # Build the telemetry service on the runner and ship it to the VPS.
 #
-# The server has 1.9 GB of RAM and runs four other Kelnix services; it must
-# never be asked to compile anything. The runner builds, rsync ships the
-# artifact, and the server only flips a symlink and restarts.
+# The server shares its 16 GB with every other Kelnix service, and building on
+# CI keeps deploys fast and the box predictable. The runner builds, rsync ships
+# the artifact, and the server only flips a symlink and restarts.
 name: Deploy telemetry
 
 on:
@@ -23,7 +23,7 @@ permissions:
   contents: read
 
 env:
-  SERVER: 5.161.229.243
+  SERVER: 89.167.79.18
   APP_DIR: /opt/kelnix-telemetry
 
 jobs:
@@ -47,7 +47,7 @@ jobs:
       - name: Prune to production dependencies
         working-directory: server
         # The runner needs devDependencies to compile; the server does not need
-        # them to run, and every megabyte matters on a 1.9 GB box.
+        # them to run, and a smaller artifact makes every deploy faster.
         run: npm prune --omit=dev
 
       - name: Set up SSH

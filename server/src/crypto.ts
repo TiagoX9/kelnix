@@ -1,7 +1,7 @@
 // Hashing and token generation, built entirely on node:crypto.
 //
 // No bcrypt/argon2 dependency on purpose: those need a native build step, and
-// the deploy pipeline ships prebuilt artifacts to a 1.9 GB box that should not
+// the deploy pipeline ships prebuilt artifacts to a box that should not
 // be compiling anything. scrypt is in the standard library and is a memory-hard
 // KDF, which is what the password case actually needs.
 import {

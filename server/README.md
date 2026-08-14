@@ -41,7 +41,7 @@ nginx in front of it, and shares a failure domain with nothing else.
 | Database | Postgres 16 + raw SQL | Rollups want window functions and `DISTINCT ON`; an ORM fights that |
 | Auth (dashboard) | Server-side session cookie | Revocable instantly; no token sitting in localStorage |
 | Auth (ingest) | Per-app API key, SHA-256 at rest | High-entropy keys need no slow KDF, and this runs on every request |
-| Passwords | `scrypt` from `node:crypto` | Memory-hard, and no native build step on a 1.9 GB box |
+| Passwords | `scrypt` from `node:crypto` | Memory-hard, and no native build step, so deploys ship prebuilt artifacts |
 | Jobs | `setInterval` | Three idempotent jobs, no fan-out — a queue would be infrastructure for its own sake |
 
 **The rule that keeps it fast:** the dashboard reads `metrics_daily`, never a
@@ -53,10 +53,10 @@ at 90 days. Rollups are tiny and kept forever.
 From **/admin → Apps & keys**, or from the shell:
 
 ```bash
-ssh root@5.161.229.243
+ssh root@89.167.79.18
 set -a && . /opt/kelnix-telemetry/shared/.env && set +a
 cd /opt/kelnix-telemetry/current
-node dist/scripts/create-app.js revvify "Revvify" --kind=saas --url=https://revvify.com
+node dist/scripts/create-app.js revvify "Revvify" --kind=saas --url=https://revvify.io
 ```
 
 Then paste the key into that app's environment and send events. No migration,
@@ -212,6 +212,6 @@ Then run the site with `VITE_TELEMETRY_URL=http://localhost:4010` and open
 `.github/workflows/deploy-telemetry.yml` fires on pushes touching `server/**`.
 The runner builds and prunes to production dependencies; the server only
 receives an artifact, runs migrations, flips the `current` symlink and restarts.
-**The 1.9 GB VPS never compiles anything.**
+**The VPS never compiles anything.**
 
 Requires the `DEPLOY_SSH_KEY` repository secret.

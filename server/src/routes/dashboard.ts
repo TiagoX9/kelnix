@@ -1,8 +1,9 @@
 // Dashboard read API.
 //
 // Every number on these endpoints comes from `metrics_daily`, never from a scan
-// of `events`. That is the rule that keeps the dashboard responsive on a shared
-// 1.9 GB box and lets raw events expire at 90 days without losing history.
+// of `events`. That is the rule that keeps the dashboard responsive on a box
+// shared with every other Kelnix service, and lets raw events expire at 90 days
+// without losing history.
 // The one exception is the log and event explorers, which are explicitly
 // drill-down views over recent raw rows and are always bounded by a LIMIT.
 import type { FastifyInstance } from 'fastify';

@@ -106,8 +106,8 @@ CREATE INDEX logs_ts_idx ON logs (ts);
 --
 -- The dashboard reads ONLY this table. Raw events are for drill-down and
 -- recomputation; they are never scanned to render a chart. That is what keeps
--- the dashboard fast on a shared 1.9 GB box, and what lets raw events expire
--- while the history stays.
+-- the dashboard fast on a box shared with every other Kelnix service, and what
+-- lets raw events expire while the history stays.
 -- ─────────────────────────────────────────────────────────────────────────────
 
 CREATE TABLE metrics_daily (

@@ -1,4 +1,4 @@
-// Postgres access. A small pool on purpose: this service shares a 1.9 GB box
+// Postgres access. A small pool on purpose: this service shares a box
 // with every other Kelnix app, and telemetry must never be the reason another
 // service can't get a connection.
 import pg from 'pg';
